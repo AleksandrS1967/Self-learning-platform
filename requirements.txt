@@ -2,3 +2,5 @@ Django
 python-dotenv
 pillow
 psycopg2
+djangorestframework
+black

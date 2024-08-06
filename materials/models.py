@@ -52,3 +52,41 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
+
+
+class Test(models.Model):
+    name = models.CharField(
+        max_length=150,
+        verbose_name="Название",
+        help_text="Введите название теста"
+    )
+    description = models.TextField(
+        verbose_name="Описание вопроса",
+        help_text="Укажите Описание вопроса",
+        **NULLABLE)
+    correct_answer = models.TextField(
+        verbose_name="Правильный ответ",
+        help_text="Укажите Правильный ответ",
+        **NULLABLE)
+    lesson = models.ForeignKey(
+        Lesson,
+        on_delete=models.CASCADE,
+        verbose_name="Курс",
+        help_text="Укажите урок",
+        related_name="test",
+        **NULLABLE,
+    )
+    owner = models.ForeignKey(
+        AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        verbose_name="владелец",
+        help_text="Укажите владельца",
+        **NULLABLE,
+    )
+
+    def __str__(self):
+        return f"{self.name}"
+
+    class Meta:
+        verbose_name = "Тест"
+        verbose_name_plural = "Тесты"

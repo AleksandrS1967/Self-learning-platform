@@ -4,7 +4,7 @@ from users.models import User
 
 
 class Command(BaseCommand):
-    """ Удаление суперпользователя."""
+    """Удаление суперпользователя."""
 
     def handle(self, *args, **options):
         user = User.objects.get(

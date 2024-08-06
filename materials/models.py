@@ -61,7 +61,7 @@ class Test(models.Model):
     description = models.TextField(
         verbose_name="Описание вопроса",
         help_text="Укажите Описание вопроса",
-        **NULLABLE
+        **NULLABLE,
     )
     correct_answer = models.TextField(
         verbose_name="Правильный ответ",

@@ -1,0 +1,11 @@
+[
+  {
+    "model": "materials.course",
+    "pk": 1,
+    "fields": {
+      "name": "Python - only",
+      "description": null,
+      "owner": 3
+    }
+  }
+]

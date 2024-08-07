@@ -53,11 +53,11 @@ class TestViewSet(ModelViewSet):
         test = serializer.save()
         test.owner = self.request.user
         test.save()
+        validate = Validate(self.request.user, test)
+        validate.validate_test()
 
     def get_permissions(self):
-        if self.action in "create":
-            self.permission_classes = (IsModerator,)
-        elif self.action in "update":
+        if self.action in ["partial_update", "update"]:
             self.permission_classes = (IsModerator | IsOwner,)
         elif self.action == "destroy":
             self.permission_classes = (IsModerator | IsOwner,)

@@ -31,11 +31,10 @@ class Lesson(models.Model):
     description = models.TextField(verbose_name="Описание", **NULLABLE)
     course = models.ForeignKey(
         Course,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name="Курс",
         help_text="Укажите курс",
         related_name="lesson",
-        **NULLABLE
     )
     owner = models.ForeignKey(
         AUTH_USER_MODEL,
@@ -60,20 +59,17 @@ class Test(models.Model):
     description = models.TextField(
         verbose_name="Описание вопроса",
         help_text="Укажите Описание вопроса",
-        **NULLABLE,
     )
     correct_answer = models.TextField(
         verbose_name="Правильный ответ",
         help_text="Укажите Правильный ответ",
-        **NULLABLE
     )
     lesson = models.ForeignKey(
         Lesson,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name="Курс",
         help_text="Укажите урок",
         related_name="test",
-        **NULLABLE
     )
     owner = models.ForeignKey(
         AUTH_USER_MODEL,

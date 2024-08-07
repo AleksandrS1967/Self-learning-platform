@@ -9,6 +9,7 @@ from materials.serializers import (
     AttemptAnswerSerializer,
 )
 from users.permissions import IsOwner, IsModerator
+from materials.validators import Validate
 
 
 class CourseViewSet(ModelViewSet):
@@ -16,9 +17,7 @@ class CourseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
 
     def get_permissions(self):
-        if self.action in "create":
-            self.permission_classes = (IsModerator,)
-        elif self.action in ["partial_update", "update"]:
+        if self.action in ["partial_update", "update"]:
             self.permission_classes = (IsModerator | IsOwner,)
         elif self.action == "destroy":
             self.permission_classes = (IsModerator | IsOwner,)
@@ -33,6 +32,8 @@ class LessonViewSet(ModelViewSet):
         lesson = serializer.save()
         lesson.owner = self.request.user
         lesson.save()
+        validate = Validate(self.request.user, lesson)
+        validate.validate_lesson()
 
     def get_permissions(self):
         if self.action in "create":

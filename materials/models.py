@@ -11,10 +11,9 @@ class Course(models.Model):
     description = models.TextField(verbose_name="Описание", **NULLABLE)
     owner = models.ForeignKey(
         AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name="владелец",
         help_text="Укажите владельца",
-        **NULLABLE
     )
 
     def __str__(self):

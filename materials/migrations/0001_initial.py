@@ -41,9 +41,7 @@ class Migration(migrations.Migration):
                 (
                     "owner",
                     models.ForeignKey(
-                        blank=True,
                         help_text="Укажите владельца",
-                        null=True,
                         on_delete=django.db.models.deletion.SET_NULL,
                         to=settings.AUTH_USER_MODEL,
                         verbose_name="владелец",

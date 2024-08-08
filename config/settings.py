@@ -15,7 +15,7 @@ SECRET_KEY = "django-insecure-96hf6bytu3q3)1(n)%j9c-r=q7$lm!tsroiptdcs%t-@60*w=5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -43,6 +43,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -136,3 +137,24 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=999),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://read-only.example.com",
+#     "https://read-and-write.example.com",
+# ]
+#
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://read-and-write.example.com",
+# ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000/',
+    # адрес вашего фронтенд-сервера
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8080',
+    'http://127.0.0.1:8000/',
+    # добавьте адрес бэкенд-сервера
+]

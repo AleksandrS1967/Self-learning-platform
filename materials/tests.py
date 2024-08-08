@@ -10,9 +10,11 @@ class MaterialsTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create(email="tedt@tru.ru")
         self.user_ = User.objects.create(email="tedtsss@tru.ru")
-        self.course = Course.objects.create(name="Pyton - only", owner=self.user)
+        self.course = Course.objects.create(name="Pyton - only",
+                                            owner=self.user)
         self.lesson = Lesson.objects.create(
-            name="Основы программирования", course=self.course, owner=self.user
+            name="Основы программирования", course=self.course,
+            owner=self.user
         )
         self.test = Test.objects.create(
             owner=self.user,
@@ -34,7 +36,8 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(data.get("owner"), self.user.pk)
 
     def test_course_update(self):
-        url = reverse("materials:course-detail", args=(self.course.pk,))
+        url = reverse("materials:course-detail",
+                      args=(self.course.pk,))
         data = {"name": "Python - с нуля", "owner": self.user_.pk}
         response = self.client.patch(url, data)
         data_ = response.json()
@@ -43,7 +46,8 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(data_.get("owner"), self.user_.pk)
 
     def test_lesson_retrieve(self):
-        url = reverse("materials:lesson-detail", args=(self.lesson.pk,))
+        url = reverse("materials:lesson-detail",
+                      args=(self.lesson.pk,))
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -52,7 +56,8 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(data.get("course"), self.course.pk)
 
     def test_lesson_update(self):
-        url = reverse("materials:lesson-detail", args=(self.lesson.pk,))
+        url = reverse("materials:lesson-detail",
+                      args=(self.lesson.pk,))
         data = {"name": "основы Pyton", "owner": self.user_.pk}
         response = self.client.patch(url, data)
         data_ = response.json()
@@ -61,7 +66,8 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(data_.get("owner"), self.user_.pk)
 
     def test_test_retrieve(self):
-        url = reverse("materials:test-detail", args=(self.test.pk,))
+        url = reverse("materials:test-detail",
+                      args=(self.test.pk,))
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -72,7 +78,8 @@ class MaterialsTestCase(APITestCase):
         self.assertEqual(data.get("description"), self.test.description)
 
     def test_test_update(self):
-        url = reverse("materials:test-detail", args=(self.test.pk,))
+        url = reverse("materials:test-detail",
+                      args=(self.test.pk,))
         data = {
             "name": "операции со строками",
             "owner": self.user_.pk,
@@ -82,7 +89,10 @@ class MaterialsTestCase(APITestCase):
         response = self.client.patch(url, data)
         data_ = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(data_.get("name"), "операции со строками")
+        self.assertEqual(data_.get("name"),
+                         "операции со строками")
         self.assertEqual(data_.get("owner"), self.user_.pk)
-        self.assertEqual(data.get("correct_answer"), "к-онкатенация")
-        self.assertEqual(data.get("description"), "как называется сложение строк")
+        self.assertEqual(data.get("correct_answer"),
+                         "к-онкатенация")
+        self.assertEqual(data.get("description"),
+                         "как называется сложение строк")

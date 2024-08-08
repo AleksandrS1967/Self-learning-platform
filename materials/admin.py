@@ -4,20 +4,20 @@ from materials.models import Course, Lesson, Test, AttemptAnswer
 
 
 @admin.register(Course)
-class UserAdmin(admin.ModelAdmin):
+class CourseAdmin(admin.ModelAdmin):
     list_display = ("pk", "name")
 
 
 @admin.register(Lesson)
-class UserAdmin(admin.ModelAdmin):
+class LessonAdmin(admin.ModelAdmin):
     list_display = ("pk", "name")
 
 
 @admin.register(Test)
-class UserAdmin(admin.ModelAdmin):
+class TestAdmin(admin.ModelAdmin):
     list_display = ("pk", "name")
 
 
 @admin.register(AttemptAnswer)
-class UserAdmin(admin.ModelAdmin):
+class AttemptAnswerAdmin(admin.ModelAdmin):
     list_display = ("pk", "answer", "answer_bool")

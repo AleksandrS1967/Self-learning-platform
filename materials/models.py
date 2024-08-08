@@ -6,9 +6,11 @@ NULLABLE = {"null": True, "blank": True}
 
 class Course(models.Model):
     name = models.CharField(
-        max_length=255, verbose_name="Название", help_text="Введите название курса"
+        max_length=255, verbose_name="Название",
+        help_text="Введите название курса"
     )
-    description = models.TextField(verbose_name="Описание", **NULLABLE)
+    description = models.TextField(verbose_name="Описание",
+                                   **NULLABLE)
     owner = models.ForeignKey(
         AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -26,9 +28,11 @@ class Course(models.Model):
 
 class Lesson(models.Model):
     name = models.CharField(
-        max_length=150, verbose_name="Название", help_text="Введите название урока"
+        max_length=150, verbose_name="Название",
+        help_text="Введите название урока"
     )
-    description = models.TextField(verbose_name="Описание", **NULLABLE)
+    description = models.TextField(verbose_name="Описание",
+                                   **NULLABLE)
     course = models.ForeignKey(
         Course,
         on_delete=models.CASCADE,
@@ -54,7 +58,8 @@ class Lesson(models.Model):
 
 class Test(models.Model):
     name = models.CharField(
-        max_length=150, verbose_name="Название", help_text="Введите название теста"
+        max_length=150, verbose_name="Название",
+        help_text="Введите название теста"
     )
     description = models.TextField(
         verbose_name="Описание вопроса",
@@ -92,7 +97,8 @@ class AttemptAnswer(models.Model):
         verbose_name="Попытка ответа",
         help_text="Укажите ваш ответ",
     )
-    answer_bool = models.BooleanField(verbose_name="Правильно/Неправильно", **NULLABLE)
+    answer_bool = models.BooleanField(verbose_name="Правильно/Неправильно",
+                                      **NULLABLE)
     test = models.ForeignKey(
         Test,
         on_delete=models.CASCADE,

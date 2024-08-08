@@ -1,5 +1,4 @@
 from rest_framework import permissions
-from materials.models import Lesson, Course
 
 
 class IsModerator(permissions.BasePermission):

@@ -10,3 +10,15 @@ class Command(BaseCommand):
         user = User.objects.get(
             email="admin@rambler.ru",
         ).delete()
+
+        user = User.objects.get(
+            email="alexandr@top.ru",
+        ).delete()
+
+        user = User.objects.get(
+            email="sergo@top.ru",
+        ).delete()
+
+        user = User.objects.get(
+            email="test@top.ru",
+        ).delete()

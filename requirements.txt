@@ -4,5 +4,10 @@ pillow
 psycopg2
 djangorestframework
 djangorestframework-simplejwt
+django-cors-headers
+setuptools
+requests
+coverage
 black
 flake8
+drf_yasg

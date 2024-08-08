@@ -19,10 +19,12 @@ class Validate:
         if self.user == self.obj.course.owner or check_bool:
             pass
         else:
-            raise ValidationError('Вы должны быть владельцем курса к которому '
-                                  'создаете данный урок. - или модератором! '
-                                  f'Вы - {self.user}. '
-                                  f'Владелец курса - {self.obj.course.owner}')
+            raise ValidationError(
+                "Вы должны быть владельцем курса к которому "
+                "создаете данный урок. - или модератором! "
+                f"Вы - {self.user}. "
+                f"Владелец курса - {self.obj.course.owner}"
+            )
 
     def validate_test(self):
         object_group_set = self.user.groups.filter(name="moderator")
@@ -36,7 +38,9 @@ class Validate:
         if self.user == self.obj.lesson.owner or check_bool:
             pass
         else:
-            raise ValidationError('Вы должны быть владельцем урока к которому '
-                                  'создаете данный тест. - или модератором! '
-                                  f'Вы - {self.user}. '
-                                  f'Владелец урока - {self.obj.lesson.owner}')
+            raise ValidationError(
+                "Вы должны быть владельцем урока к которому "
+                "создаете данный тест. - или модератором! "
+                f"Вы - {self.user}. "
+                f"Владелец урока - {self.obj.lesson.owner}"
+            )

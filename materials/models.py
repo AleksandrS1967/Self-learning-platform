@@ -16,6 +16,7 @@ class Course(models.Model):
         on_delete=models.CASCADE,
         verbose_name="владелец",
         help_text="Укажите владельца",
+        **NULLABLE
     )
 
     def __str__(self):

@@ -46,9 +46,11 @@
       "last_name": "",
       "is_staff": true,
       "is_active": true,
-      "date_joined": "2024-08-07T08:37:52.882Z",
+      "date_joined": "2024-08-07T08:37:52Z",
       "email": "sergo@top.ru",
-      "groups": [],
+      "groups": [
+        2
+      ],
       "user_permissions": []
     }
   },

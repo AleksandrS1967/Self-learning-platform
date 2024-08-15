@@ -1,5 +1,7 @@
 from rest_framework.serializers import ValidationError
 
+from materials.models import Lesson, Test
+
 
 class Validate:
 
@@ -19,6 +21,9 @@ class Validate:
         if self.user == self.obj.course.owner or check_bool:
             pass
         else:
+            lesson = Lesson.objects.get(
+                pk=self.obj.id,
+            ).delete()
             raise ValidationError(
                 "Вы должны быть владельцем курса к которому "
                 "создаете данный урок. - или модератором! "
@@ -38,6 +43,9 @@ class Validate:
         if self.user == self.obj.lesson.owner or check_bool:
             pass
         else:
+            test = Test.objects.get(
+                pk=self.obj.id,
+            ).delete()
             raise ValidationError(
                 "Вы должны быть владельцем урока к которому "
                 "создаете данный тест. - или модератором! "
